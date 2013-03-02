@@ -22,3 +22,5 @@ Vagrantfile
 .coverage
 settings.js
 fabfile.py
+*~
+\#*#
