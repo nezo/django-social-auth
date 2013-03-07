@@ -109,7 +109,8 @@ def complete_process(request, backend, *args, **kwargs):
     # can be raised.
     try:
         user = auth_complete(request, backend, *args, **kwargs)
-    except IntegrityError:
+#    except IntegrityError:
+    except Exception:
         url = setting('SIGNUP_ERROR_URL', setting('LOGIN_ERROR_URL'))
         return HttpResponseRedirect(url)
 
