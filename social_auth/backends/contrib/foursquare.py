@@ -7,7 +7,8 @@ from social_auth.utils import dsa_urlopen
 
 
 FOURSQUARE_SERVER = 'foursquare.com'
-FOURSQUARE_AUTHORIZATION_URL = 'https://foursquare.com/oauth2/authenticate'
+# FOURSQUARE_AUTHORIZATION_URL = 'https://foursquare.com/oauth2/authenticate'
+FOURSQUARE_AUTHORIZATION_URL = 'https://foursquare.com/oauth2/authorize'
 FOURSQUARE_ACCESS_TOKEN_URL = 'https://foursquare.com/oauth2/access_token'
 FOURSQUARE_CHECK_AUTH = 'https://api.foursquare.com/v2/users/self'
 
@@ -39,7 +40,7 @@ class FoursquareAuth(BaseOAuth2):
 
     def user_data(self, access_token, *args, **kwargs):
         """Loads user data from service"""
-        params = {'oauth_token': access_token}
+        params = {'oauth_token': access_token, 'v':'20140604'}
         url = FOURSQUARE_CHECK_AUTH + '?' + urlencode(params)
         try:
             return simplejson.load(dsa_urlopen(url))
